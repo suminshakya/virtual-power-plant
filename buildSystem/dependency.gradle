@@ -1,0 +1,33 @@
+ext {
+    bootStarter = "org.springframework.boot:spring-boot-starter"
+
+    /**Example: spring boot devtools, lombok, mapstruct, spring configuration processor,  swagger**/
+    developerTool = [
+            mapStruct         : "org.mapstruct:mapstruct-jdk8:$mapStruct",
+            lombok            : "org.projectlombok:lombok",
+            mapStructProcessor: "org.mapstruct:mapstruct-processor:$mapStruct"
+    ]
+
+    testing = [
+            jUnit      : "junit:junit:$jUnit",
+            bootStarter: "org.springframework.boot:spring-boot-starter-test",
+            mokito: "org.mockito:mockito-core:$mokitoVersion"
+    ]
+
+    web = [
+            starterWeb    : "org.springframework.boot:spring-boot-starter-web",
+    ]
+
+    mics = [
+            hibernateCore  : "org.hibernate:hibernate-core:$hibernateCore",
+    ]
+
+    sql = [
+            dataJPA      : "org.springframework.boot:spring-boot-starter-data-jpa",
+            mySQL        : "mysql:mysql-connector-java",
+    ]
+
+    validation = [
+            starterValidation : "org.springframework.boot:spring-boot-starter-validation"
+    ]
+}
