@@ -61,7 +61,7 @@ public class BatteryControllerTest {
                 ));
 
         response.andExpect(status().isOk())
-                .andExpect(jsonPath("$.size()", is(batteryDtos.size())));
+                .andExpect(jsonPath("$.message", is(SuccessfulMessage.BATTERIES_CREATED)));
 
     }
 
@@ -107,7 +107,7 @@ public class BatteryControllerTest {
                 .andExpect(result -> Assert.assertTrue(result.getResolvedException() instanceof ConstraintViolationException))
                 .andExpect(r ->{
                     ErrorMessage errorMessage = objectMapper.readValue(r.getResponse().getContentAsString(), ErrorMessage.class);
-                    Assertions.assertTrue(errorMessage.getErrors().contains(Message.CAPACITY_FORMAT));
+                    Assertions.assertTrue(errorMessage.getErrors().contains(ValidationMessage.CAPACITY_FORMAT));
                 });
 
     }
@@ -132,7 +132,7 @@ public class BatteryControllerTest {
                 .andExpect(result -> Assert.assertTrue(result.getResolvedException() instanceof ConstraintViolationException))
                 .andExpect(r ->{
                     ErrorMessage errorMessage = objectMapper.readValue(r.getResponse().getContentAsString(), ErrorMessage.class);
-                    Assertions.assertTrue(errorMessage.getErrors().contains(Message.NAME_REQUIRED));
+                    Assertions.assertTrue(errorMessage.getErrors().contains(ValidationMessage.NAME_REQUIRED));
                 });
 
     }
@@ -155,7 +155,7 @@ public class BatteryControllerTest {
                 .andExpect(result -> Assert.assertTrue(result.getResolvedException() instanceof ConstraintViolationException))
                 .andExpect(r ->{
                     ErrorMessage errorMessage = objectMapper.readValue(r.getResponse().getContentAsString(), ErrorMessage.class);
-                    Assertions.assertTrue( errorMessage.getErrors().contains(Message.NAME_FORMAT));
+                    Assertions.assertTrue( errorMessage.getErrors().contains(ValidationMessage.NAME_FORMAT));
                 });
 
     }

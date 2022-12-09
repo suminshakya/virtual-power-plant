@@ -1,37 +1,71 @@
-As per the assigment ,I have created a project on virtual power plant system for aggregating distributed power
-and the description for project set up and endpoint are given below
+
+# Virtual Power Plant System
+
+Virtual power plant system for aggregating distributed power sources into
+a single cloud based energy provider.
 
 
-Tools Used
----------------------------------------------------
--Spring Boot framework
--Spring JPA framework
--Junit
--Mokito framework
--MySQL
 
-Setup
---------------------------------------------------
--Download the project from the link https://github.com/suminshakya/VPS
+## Tech Stack
 
--Create a database named vpps or you can overwrite the name  in application.properties file
+**Language:** Core Java
 
--Then open the project in IDE and hit gradlew clean build
+**Framework:** Spring Boot, Spring Data JPA, Hibernate
 
--After project build successfully start the project by running main file that is VppsApplication
+**Database:** MySQL
 
-API
---------------------------------------------------
+**API Testing Application:** Postman
 
-Run the application and hit the following url in postman
+## Run Locally
 
--API to presist in database
-The api for saving the batteries is http://localhost:8080/api/v1/batteries
+Clone the project
 
-POST Data
+```bash
+  git clone https://github.com/suminshakya/virtual-power-plant
+```
 
-Request:
-    [
+Create a database named vpps in your MySQL database
+
+```bash
+  CREATE DATABASE vpps;
+```
+
+Go to the project directory
+
+```bash
+  cd virtual-power-plant
+```
+
+Install dependencies
+
+```bash
+  gradlew clean build
+```
+
+Start the server with proper username and paswword of MySQL database
+
+```bash
+  gradlew bootRun --args="--spring.datasource.username=<DATABASE_USERNAME> --spring.datasource.password=<DATABASE_PASSWORD>"
+```
+
+
+## API Reference
+
+### Create batteries
+
+```http
+  POST /api/v1/batteries
+```
+
+| Variable | Type     | Required                |
+| :-------- | :------- | :------------------------- |
+| `name` | `string` | **Yes** |
+| `postCode` | `int` | **Yes**|
+| `capacity` | `int` | **Yes**|
+
+#### Request
+```json
+ [
       {
         "name": "Mount Adams",
         "postCode": 6525,
@@ -59,19 +93,34 @@ Request:
       }
     ]
 
+  ```
+#### Response
+  ```json
+   {
+    "message": "Batteries has been successfully created!!!",
+    "status": "CREATED"
+  }
+ ```
 
--API to get the summary and statistics of batteries
-The api for getting summary of the batteries is http://localhost:8080/api/v1/batteries?from=param1&to=param2
+## Get Summary and Statistics of batteries
 
-where param1 and param2 are range data of post code
+```http
+  GET /api/v1/batteries?from=start-value-postcode&to=end-value-postcode
+```
 
-Example
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `from`      | `int` | **Required**.  Start value of post code|
+| `to`      | `int` | **Required**. End value of post code |
 
-Request
-http://localhost:8080/api/v1/batteries?from=6107&to=6525
+#### Request
 
-Response
+```http
+  /api/v1/batteries?from=6107&to=6525
+```
 
+#### Response
+```json
 {
     "totalBatteries": 2,
     "totalCapacity": 25500,
@@ -89,3 +138,6 @@ Response
         }
     ]
 }
+ ```
+
+

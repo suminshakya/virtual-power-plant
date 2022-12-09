@@ -10,7 +10,11 @@ public interface RequiredConstant {
         String BATTERY_API = "/batteries";
     }
 
-    interface Message {
+    interface SuccessfulMessage{
+        String BATTERIES_CREATED = "Batteries has been successfully created!!!";
+    }
+
+    interface ValidationMessage {
         String NAME_REQUIRED = "Name is Required!!!";
         String BLANKED_NAME = "Name must not be empty!!!";
         String NAME_FORMAT = "Name should consist only characters";

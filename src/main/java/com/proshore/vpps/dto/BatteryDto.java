@@ -12,17 +12,17 @@ import static com.proshore.vpps.utils.RequiredConstant.*;
 @Data
 public class BatteryDto {
 
-    @Pattern(regexp= RegularExpression.ALPHABET_SPACE_ONLY,message=Message.NAME_FORMAT)
-    @NotNull(message = Message.NAME_REQUIRED)
-    @NotBlank(message = Message.BLANKED_NAME)
+    @Pattern(regexp= RegularExpression.ALPHABET_SPACE_ONLY,message= ValidationMessage.NAME_FORMAT)
+    @NotNull(message = ValidationMessage.NAME_REQUIRED)
+    @NotBlank(message = ValidationMessage.BLANKED_NAME)
     private String name;
 
-    @NotNull(message = Message.POSTCODE_REQUIRED)
-    @ValidateNumber(message = Message.POSTCODE_FORMAT)
+    @NotNull(message = ValidationMessage.POSTCODE_REQUIRED)
+    @ValidateNumber(message = ValidationMessage.POSTCODE_FORMAT)
     private Integer postCode;
 
-    @ValidateNumber(message = Message.CAPACITY_FORMAT)
-    @NotNull(message = Message.CAPACITY_REQUIRED)
+    @ValidateNumber(message = ValidationMessage.CAPACITY_FORMAT)
+    @NotNull(message = ValidationMessage.CAPACITY_REQUIRED)
     private Integer capacity;
 }
 
